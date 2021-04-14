@@ -49,6 +49,9 @@ async def background_update_voting_result():
     print('DEBUG, start waiting {} minute'.format(int(votingEndTime)))
     await asyncio.sleep(int(votingEndTime)*60)
     print('DEBUG, start process 2')
+    
+    serviceStart = False
+    
     maxResultIndex = 0
     maxResult = 0
 
@@ -61,7 +64,7 @@ async def background_update_voting_result():
             maxResult = vote_result_count[c] 
             maxResultIndex = c
 
-    serviceStart = False
+    
   
     await registeredChannel.send('The vote result is {}'.format(vote_result[maxResultIndex]))
     await registeredChannel.send('The vote result list is {}'.format(vote_result_list))
